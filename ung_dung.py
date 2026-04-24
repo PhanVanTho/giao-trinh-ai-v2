@@ -111,8 +111,16 @@ logger = logging.getLogger(__name__)
 
 # --- FLASK SETUP ---
 app = Flask(__name__, template_folder="templates", static_folder="static")
-app.config["SECRET_KEY"] = CauHinh.KHOA_BI_MAT
-app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{os.getenv('DB_USER', 'root')}:{os.getenv('DB_PASS', '')}@{os.getenv('DB_HOST', 'localhost')}:{os.getenv('DB_PORT', '3306')}/{os.getenv('DB_NAME', 'giao_trinh_ai')}"
+app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY", os.getenv("SECRET_KEY", "dev-secret-key"))
+
+# --- DATABASE CONFIG (Hybrid Support for Local & Render) ---
+if os.getenv("RENDER") or not os.getenv("DB_USER"):
+    # Chế độ Render hoặc không có cấu hình MySQL -> Dùng SQLite cho nhanh & miễn phí
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///giáo_trình.db"
+else:
+    # Chế độ Local (MySQL)
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{os.getenv('DB_USER', 'root')}:{os.getenv('DB_PASS', '')}@{os.getenv('DB_HOST', 'localhost')}:{os.getenv('DB_PORT', '3306')}/{os.getenv('DB_NAME', 'giao_trinh_ai')}"
+
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
