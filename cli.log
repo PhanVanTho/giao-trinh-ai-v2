@@ -1,0 +1,157 @@
+2026-04-22 14:50:03,460 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:50:03,473 [INFO] [SafetyRouter] FINAL: SAFE (Layer: ai) — Rule said: SAFE | AI said: SAFE | Academic: False | Action: False | Reason: The topic 'Trí tuệ nhân tạo' (Artificial Intelligence) is a normal academic subject that encompasses general knowledge about technology, algorithms, and their applications.
+2026-04-22 14:50:03,473 [INFO] [EKRE-V21.3] Starting Diamond Discovery: Trí tuệ nhân tạo
+2026-04-22 14:50:07,657 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:50:09,446 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:50:19,850 [INFO] [FETCH] Discovery Progress: 2 docs collected...
+2026-04-22 14:50:19,850 [INFO] [FETCH] Discovery Progress: 10 docs collected...
+2026-04-22 14:50:19,850 [INFO] [FETCH] Discovery Progress: 16 docs collected...
+2026-04-22 14:50:21,173 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:50:21,179 [INFO] [EKRE-V26.2] Topic Complexity: MEDIUM | RawDocs: 21
+2026-04-22 14:50:21,179 [INFO] [ADAPTIVE] Precomputing embeddings for 21 docs...
+2026-04-22 14:50:21,592 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:50:21,890 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:50:22,038 [INFO] [HybridFilter-V26.2] Input=21 | Passed=7 | Sources=7 | Threshold=0.400
+2026-04-22 14:50:22,040 [INFO] [ADAPTIVE] Attempt=0 | Sim≥0.400 | Yield=7/8 | AvgSim=0.675 | LowRatio=0.00 | Confidence=0.675
+2026-04-22 14:50:22,040 [INFO] [ADAPTIVE] ↘ Relaxing thresholds → Sim=0.390, Quality=1.4 (step=0.01)
+2026-04-22 14:50:22,041 [INFO] [HybridFilter-V26.2] Input=21 | Passed=7 | Sources=7 | Threshold=0.390
+2026-04-22 14:50:22,041 [INFO] [ADAPTIVE] Attempt=1 | Sim≥0.390 | Yield=7/8 | AvgSim=0.675 | LowRatio=0.00 | Confidence=0.675
+2026-04-22 14:50:22,041 [INFO] [ADAPTIVE] ↘ Relaxing thresholds → Sim=0.380, Quality=1.2 (step=0.01)
+2026-04-22 14:50:22,042 [INFO] [HybridFilter-V26.2] Input=21 | Passed=7 | Sources=7 | Threshold=0.380
+2026-04-22 14:50:22,042 [INFO] [ADAPTIVE] Attempt=2 | Sim≥0.380 | Yield=7/8 | AvgSim=0.675 | LowRatio=0.00 | Confidence=0.675
+2026-04-22 14:50:22,042 [INFO] [ADAPTIVE] ↘ Relaxing thresholds → Sim=0.370, Quality=1.1 (step=0.01)
+2026-04-22 14:50:22,042 [INFO] [HybridFilter-V26.2] Input=21 | Passed=7 | Sources=7 | Threshold=0.370
+2026-04-22 14:50:22,042 [INFO] [ADAPTIVE] Attempt=3 | Sim≥0.370 | Yield=7/8 | AvgSim=0.675 | LowRatio=0.00 | Confidence=0.675
+2026-04-22 14:50:22,042 [INFO] [ADAPTIVE] ↘ Relaxing thresholds → Sim=0.360, Quality=1.0 (step=0.01)
+2026-04-22 14:50:22,043 [INFO] [HybridFilter-V26.2] Input=21 | Passed=8 | Sources=8 | Threshold=0.360
+2026-04-22 14:50:22,043 [INFO] [ADAPTIVE] Attempt=4 | Sim≥0.360 | Yield=8/8 | AvgSim=0.637 | LowRatio=0.00 | Confidence=0.637
+2026-04-22 14:50:22,043 [INFO] [ADAPTIVE] ✅ TARGET_MET. Confidence=0.637
+2026-04-22 14:50:22,043 [INFO] [ADAPTIVE] Final → StopReason=TARGET_MET | Yield=8 | Confidence=0.637 | LowPriority=0
+2026-04-22 14:50:22,043 [INFO] [EKRE-V26.2] Post-Gate → Diversity:4 clusters | Yield:8 | QualityDropped:13
+2026-04-22 14:50:22,413 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:50:22,713 [INFO] [Deduplication] Pruned 0 near-identical docs. Anchors protected: 6. Remaining: 8
+2026-04-22 14:50:22,713 [INFO] [STRUCTURE] Yield=8 | AvgLen=23275 | AvgSim=0.637 | Diversity=4 | LowPriority=0 | Confidence=0.637 | StopReason=TARGET_MET
+2026-04-22 14:50:22,733 [INFO] [Embedding] 375/375 new texts to embed.
+2026-04-22 14:50:25,268 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:50:26,643 [INFO] [AdaptiveExtraction] Dữ liệu lớn (375 docs). Kích hoạt chế độ Chunking.
+2026-04-22 14:50:26,644 [INFO] [ChunkedExtraction] Processing Chunk 1/1...
+2026-04-22 14:50:32,744 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:50:33,154 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:50:33,681 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:50:33,741 [INFO] [STEP] Bắt đầu xây dựng Dàn ý (quy_mo=can_ban, mode=RANGE, target=4-5).
+2026-04-22 14:50:43,126 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:50:43,127 [WARNING] [Architect] Out of Range: Expected 4-5, Got 1.
+2026-04-22 14:50:43,127 [WARNING] [Architect] Severe Collapse detected (1/4). Retrying with explicit chapter list...
+2026-04-22 14:50:52,615 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:50:52,618 [WARNING] [Architect] Rescue Failed. Still got 1 chapters. Falling back to programmatic builder.
+2026-04-22 14:50:52,618 [WARNING] [Architect] Programmatic Outline built: 4 chapters from 25 terms.
+2026-04-22 14:50:52,618 [INFO] [Architect] Programmatic Builder produced 4 chapters.
+2026-04-22 14:50:52,619 [INFO] [DONE] Xây dựng Dàn ý hoàn tất (18.88s). Chapters: 4
+2026-04-22 14:50:52,642 [INFO] [Polish] === Starting Constraint-aware Polish Layer (4 chapters) ===
+2026-04-22 14:50:52,643 [INFO] [Polish-Relevance] Anchors: 15 (['Trí tuệ nhân tạo', 'Học máy', 'Nhận thức', 'Xử lý ngôn ngữ tự nhiên', 'Hệ thống đề xuất']...)
+2026-04-22 14:50:53,532 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:50:53,867 [INFO] [Polish-Relevance] GRAY (kept): 'Dữ liệu không chính xác' (max_sim=0.380, zone [0.3-0.55])
+2026-04-22 14:50:53,868 [INFO] [Polish-Relevance] GRAY (kept): 'Hợp tác 3 nhà' (max_sim=0.357, zone [0.3-0.55])
+2026-04-22 14:50:53,868 [INFO] [Polish-Relevance] All 12 sections passed. (2 in gray zone, kept safely).
+2026-04-22 14:50:53,868 [INFO] [Polish] Step 0 (Relevance Gate): All chapters on-topic.
+2026-04-22 14:50:55,579 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:50:55,580 [INFO] [Polish-Reorder] Dependency graph: 4 pairs
+2026-04-22 14:50:56,297 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:50:56,298 [INFO] [Polish-Reorder] Reorder successful: [1, 3, 4, 2]
+2026-04-22 14:50:56,298 [INFO] [Polish] Step 1 (Reorder): APPLIED ✓
+2026-04-22 14:51:04,384 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:51:04,386 [WARNING] [Polish-Rename] API failed: Expecting value: line 1 column 1 (char 0). ROLLBACK.
+2026-04-22 14:51:04,386 [INFO] [Polish] Step 2 (Rename): SAFE ✓
+2026-04-22 14:51:05,009 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:05,544 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:05,729 [INFO] [Polish-Overlap] No overlapping chapters detected.
+2026-04-22 14:51:05,729 [INFO] [Polish] Step 3 (Overlap): No overlaps found.
+2026-04-22 14:51:06,536 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:51:07,560 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:51:07,561 [INFO] [Polish] Score IMPROVED (4.0 → 4.0). COMMIT. ✓
+2026-04-22 14:51:07,561 [INFO] [Polish] === Polish Layer completed in 14.92s ===
+2026-04-22 14:51:08,074 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:08,076 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:08,083 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:08,448 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:08,449 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:08,593 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:09,302 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:09,340 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:09,410 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:36,134 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:51:37,172 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:37,768 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:38,080 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:51:41,249 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:51:53,406 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:52:05,012 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:54:48,845 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:54:48,855 [INFO] [SafetyRouter] FINAL: SAFE (Layer: ai) — Rule said: SAFE | AI said: SAFE | Academic: False | Action: False | Reason: The topic 'Trí tuệ nhân tạo' (Artificial Intelligence) is a normal academic subject that encompasses various fields such as computer science, ethics, and technology, and does not involve any harmful intent.
+2026-04-22 14:54:48,856 [INFO] [EKRE-V21.3] Starting Diamond Discovery: Trí tuệ nhân tạo
+2026-04-22 14:54:53,146 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:54:54,073 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:03,818 [INFO] [FETCH] Discovery Progress: 2 docs collected...
+2026-04-22 14:55:03,818 [INFO] [FETCH] Discovery Progress: 7 docs collected...
+2026-04-22 14:55:03,818 [INFO] [FETCH] Discovery Progress: 13 docs collected...
+2026-04-22 14:55:04,717 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:55:04,719 [INFO] [EKRE-V26.2] Topic Complexity: MEDIUM | RawDocs: 18
+2026-04-22 14:55:04,719 [INFO] [ADAPTIVE] Precomputing embeddings for 18 docs...
+2026-04-22 14:55:05,130 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:05,642 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:05,858 [INFO] [HybridFilter-V26.2] Input=18 | Passed=8 | Sources=8 | Threshold=0.400
+2026-04-22 14:55:05,858 [INFO] [ADAPTIVE] Attempt=0 | Sim≥0.400 | Yield=8/8 | AvgSim=0.660 | LowRatio=0.00 | Confidence=0.660
+2026-04-22 14:55:05,860 [INFO] [ADAPTIVE] ✅ TARGET_MET. Confidence=0.660
+2026-04-22 14:55:05,860 [INFO] [ADAPTIVE] Final → StopReason=TARGET_MET | Yield=8 | Confidence=0.660 | LowPriority=0
+2026-04-22 14:55:05,860 [INFO] [EKRE-V26.2] Post-Gate → Diversity:4 clusters | Yield:8 | QualityDropped:10
+2026-04-22 14:55:06,567 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:06,582 [INFO] [Deduplication] Pruned 0 near-identical docs. Anchors protected: 6. Remaining: 8
+2026-04-22 14:55:06,582 [INFO] [STRUCTURE] Yield=8 | AvgLen=23979 | AvgSim=0.660 | Diversity=4 | LowPriority=0 | Confidence=0.660 | StopReason=TARGET_MET
+2026-04-22 14:55:06,608 [INFO] [Embedding] 386/386 new texts to embed.
+2026-04-22 14:55:08,233 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:09,436 [INFO] [AdaptiveExtraction] Dữ liệu lớn (386 docs). Kích hoạt chế độ Chunking.
+2026-04-22 14:55:09,437 [INFO] [ChunkedExtraction] Processing Chunk 1/1...
+2026-04-22 14:55:15,065 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:55:15,781 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:16,600 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:16,720 [INFO] [STEP] Bắt đầu xây dựng Dàn ý (quy_mo=can_ban, mode=RANGE, target=4-5).
+2026-04-22 14:55:28,272 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:55:28,274 [WARNING] [Architect] Out of Range: Expected 4-5, Got 1.
+2026-04-22 14:55:28,274 [WARNING] [Architect] Severe Collapse detected (1/4). Retrying with explicit chapter list...
+2026-04-22 14:55:42,507 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:55:42,508 [INFO] [Architect] Rescue Successful. Chapters: 4
+2026-04-22 14:55:42,508 [INFO] [DONE] Xây dựng Dàn ý hoàn tất (25.79s). Chapters: 4
+2026-04-22 14:55:42,518 [INFO] [Polish] === Starting Constraint-aware Polish Layer (4 chapters) ===
+2026-04-22 14:55:42,520 [INFO] [Polish-Relevance] Anchors: 15 (['Trí tuệ nhân tạo', 'Học tập', 'Nhận thức', 'Kỹ thuật', 'Triết lý']...)
+2026-04-22 14:55:43,019 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:43,131 [INFO] [Polish-Relevance] GRAY (kept): 'Phương pháp Học tập có Giám sát' (max_sim=0.524, zone [0.3-0.55])
+2026-04-22 14:55:43,132 [INFO] [Polish-Relevance] GRAY (kept): 'Phương pháp Học tập không Giám sát' (max_sim=0.524, zone [0.3-0.55])
+2026-04-22 14:55:43,133 [INFO] [Polish-Relevance] All 9 sections passed. (2 in gray zone, kept safely).
+2026-04-22 14:55:43,133 [INFO] [Polish] Step 0 (Relevance Gate): All chapters on-topic.
+2026-04-22 14:55:44,349 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:55:44,353 [INFO] [Polish-Reorder] Dependency graph: 3 pairs
+2026-04-22 14:55:45,168 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:55:45,170 [INFO] [Polish-Reorder] Reorder successful: [1, 2, 3, 4]
+2026-04-22 14:55:45,171 [INFO] [Polish] Step 1 (Reorder): No change needed.
+2026-04-22 14:55:51,210 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:55:51,212 [WARNING] [Polish-Rename] API failed: Expecting value: line 1 column 1 (char 0). ROLLBACK.
+2026-04-22 14:55:51,212 [INFO] [Polish] Step 2 (Rename): SAFE ✓
+2026-04-22 14:55:51,622 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:52,132 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:52,134 [INFO] [Polish-Overlap] No overlapping chapters detected.
+2026-04-22 14:55:52,134 [INFO] [Polish] Step 3 (Overlap): No overlaps found.
+2026-04-22 14:55:52,134 [INFO] [Polish] No changes made. Keeping original.
+2026-04-22 14:55:52,135 [INFO] [Polish] === Polish Layer completed in 9.62s ===
+2026-04-22 14:55:52,748 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:52,748 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:52,763 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:53,053 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:53,054 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:53,151 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:55:53,566 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:56:14,766 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:56:14,767 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:56:15,688 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:56:16,299 [INFO] HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-04-22 14:56:21,524 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-22 14:56:45,379 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
