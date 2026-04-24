@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Sản Phẩm Tiêu Biểu - Giáo Trình AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #047857; /* Emerald 700 */
+            --bg-color: #f8fafc;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* Navbar */
+        .navbar-custom {
+            background-color: transparent;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: var(--primary) !important;
+            font-size: 1.25rem;
+        }
+        .nav-link {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin: 0 10px;
+            transition: color 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-dark);
+        }
+        .nav-link.active {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+        }
+        .btn-signin {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            padding: 8px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn-signin:hover {
+            background-color: #065f46;
+            color: white;
+        }
+
+        /* Showcase Section */
+        .showcase-header {
+            padding: 5rem 0 3rem;
+            text-align: center;
+        }
+        .showcase-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .showcase-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            height: 100%;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.02);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(4, 120, 87, 0.1);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .product-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: -webkit-linear-gradient(45deg, var(--primary), #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .product-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .product-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-val {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-view {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s;
+            width: 100%;
+            display: inline-block;
+        }
+
+        .btn-view:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 0 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        .footer-logo {
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('trang_chu') }}">Giáo Trình AI</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav gap-3">
+                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'trang_chu' %}active{% endif %}" href="{{ url_for('trang_chu') }}">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('trang_chu') }}#guide-section">Hướng Dẫn</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'san_pham' %}active{% endif %}" href="{{ url_for('san_pham') }}">Sản Phẩm</a></li>
+                </ul>
+            </div>
+            <div class="d-none d-lg-block">
+                {% if current_user.is_authenticated %}
+                    <div class="d-flex align-items-center">
+                        <a href="{{ url_for('profile') }}" class="btn d-flex align-items-center me-3" style="background: white; border-radius: 12px; border: 1px solid rgba(0,0,0,0.08); padding: 6px 16px; text-decoration: none; transition: all 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                            <i class="fa-solid fa-circle-user fs-4 text-success me-2"></i>
+                            <div class="text-start">
+                                <div style="font-size: 0.65rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Token</div>
+                                <div style="font-size: 1rem; color: #0f172a; font-weight: 700; line-height: 1;">{{ current_user.token }}</div>
+                            </div>
+                        </a>
+                        <a href="{{ url_for('logout') }}" class="btn-signin" style="background-color: #64748b;">Đăng xuất</a>
+                    </div>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn-signin">Đăng nhập</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Showcase Header -->
+    <section class="showcase-header">
+        <div class="container">
+            <h1 class="showcase-title">Sản Phẩm Tiêu Biểu</h1>
+            <p class="showcase-desc">Khám phá các giáo trình chuyên sâu được hệ thống AI tự động tổng hợp và biên soạn từ những nguồn tài liệu học thuật uy tín nhất.</p>
+        </div>
+    </section>
+
+    <!-- Showcase Grid -->
+    <section class="showcase-grid pb-5">
+        <div class="container">
+            <div class="row g-4">
+                {% if products and products|length > 0 %}
+                    {% set icons = ['fa-microchip', 'fa-chart-pie', 'fa-staff-snake', 'fa-book-open', 'fa-atom', 'fa-globe'] %}
+                    {% set badges = ['Học Thuật', 'Chuyên Sâu', 'Phân Tích', 'Nghiên Cứu', 'Cơ Bản'] %}
+                    {% for item in products %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="product-card">
+                            <div class="product-badge">{{ badges[loop.index0 % badges|length] }}</div>
+                            <div class="product-icon"><i class="fa-solid {{ icons[loop.index0 % icons|length] }}"></i></div>
+                            <h3 class="product-title" title="{{ item.chu_de }}" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 60px; line-height: 1.3;">{{ item.chu_de }}</h3>
+                            <p class="product-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; height: 75px;">
+                                Giáo trình được hệ thống Giáo Trình AI tổng hợp tự động với nội dung chi tiết, cập nhật và trình bày chuẩn học thuật.
+                            </p>
+                            
+                            <div class="product-stats">
+                                <div class="stat-item">
+                                    <span class="stat-val">{{ item.chuong }}</span>
+                                    <span class="stat-label">Chương</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-val">{{ item.chinh_xac }}%</span>
+                                    <span class="stat-label">Chính xác</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-val">{{ item.trich_dan }}</span>
+                                    <span class="stat-label">Trích dẫn</span>
+                                </div>
+                            </div>
+                            <a href="/xem-san-pham/{{ item.id }}" class="btn-view" target="_blank">Xem giáo trình <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                
+                <!-- Product 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <div class="product-badge">Khoa Học Máy Tính</div>
+                        <div class="product-icon"><i class="fa-solid fa-microchip"></i></div>
+                        <h3 class="product-title">Kiến Trúc Máy Tính & HĐH</h3>
+                        <p class="product-text">Giáo trình chuyên sâu phân tích cấu trúc phần cứng, cách thức hoạt động của CPU, bộ nhớ, và nhân hệ điều hành Linux/Windows. Phù hợp cho sinh viên năm 2.</p>
+                        
+                        <div class="product-stats">
+                            <div class="stat-item">
+                                <span class="stat-val">12</span>
+                                <span class="stat-label">Chương</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-val">98.5%</span>
+                                <span class="stat-label">Chính xác</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-val">152</span>
+                                <span class="stat-label">Trích dẫn</span>
+                            </div>
+                        </div>
+                        <a href="{{ url_for('trang_chu') }}#config-section" class="btn-view" onclick="alert('Đây là giáo trình mẫu để tham khảo!')">Tải Bản PDF <i class="fa-solid fa-download ms-1"></i></a>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <div class="product-badge">Kinh Tế Học</div>
+                        <div class="product-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                        <h3 class="product-title">Kinh Tế Vĩ Mô Ứng Dụng</h3>
+                        <p class="product-text">Tìm hiểu các mô hình tăng trưởng kinh tế, lạm phát, chính sách tiền tệ của ngân hàng trung ương và sự vận hành của nền kinh tế toàn cầu.</p>
+                        
+                        <div class="product-stats">
+                            <div class="stat-item">
+                                <span class="stat-val">8</span>
+                                <span class="stat-label">Chương</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-val">99.1%</span>
+                                <span class="stat-label">Chính xác</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-val">89</span>
+                                <span class="stat-label">Trích dẫn</span>
+                            </div>
+                        </div>
+                        <a href="{{ url_for('trang_chu') }}#config-section" class="btn-view" onclick="alert('Đây là giáo trình mẫu để tham khảo!')">Tải Bản PDF <i class="fa-solid fa-download ms-1"></i></a>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <div class="product-badge">Y Khoa</div>
+                        <div class="product-icon"><i class="fa-solid fa-staff-snake"></i></div>
+                        <h3 class="product-title">Sinh Lý Học Cơ Sở</h3>
+                        <p class="product-text">Tài liệu chi tiết về hoạt động chức năng của các cơ quan trong cơ thể người, từ tế bào đến hệ thống hô hấp, tuần hoàn, bài tiết và thần kinh.</p>
+                        
+                        <div class="product-stats">
+                            <div class="stat-item">
+                                <span class="stat-val">15</span>
+                                <span class="stat-label">Chương</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-val">97.8%</span>
+                                <span class="stat-label">Chính xác</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-val">214</span>
+                                <span class="stat-label">Trích dẫn</span>
+                            </div>
+                        </div>
+                        <a href="{{ url_for('trang_chu') }}#config-section" class="btn-view" onclick="alert('Đây là giáo trình mẫu để tham khảo!')">Tải Bản PDF <i class="fa-solid fa-download ms-1"></i></a>
+                    </div>
+                </div>
+
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">GIÁO TRÌNH AI</div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Faculty Portal</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-copy">
+                &copy; 2026 GIÁO TRÌNH AI. THE INTELLECTUAL LIGHT.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

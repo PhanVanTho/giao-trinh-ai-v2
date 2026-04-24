@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Giới thiệu - Giáo Trình AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #047857; /* Emerald 700 */
+            --bg-color: #f8fafc;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --font-main: 'Be Vietnam Pro', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.01em;
+        }
+
+        h1, h2, h3, h4, h5, h6, .navbar-brand, .nav-link, .btn {
+            font-family: var(--font-main);
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar-custom {
+            background: rgba(2, 44, 34, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: #34d399 !important; /* Mint Green */
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0 15px;
+            transition: all 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff !important;
+            transform: translateY(-2px);
+        }
+        .nav-link.active {
+            border-bottom: 2px solid #34d399;
+            padding-bottom: 4px;
+        }
+        .btn-signin {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            padding: 8px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn-signin:hover {
+            background-color: #065f46;
+            color: white;
+        }
+
+        /* Hero Section with Dynamic Dark Background */
+        .hero-section {
+            padding: 10rem 0 6rem; /* Increased top padding for fixed navbar */
+            position: relative;
+            overflow: hidden;
+            background: #022c22; /* Very dark emerald */
+        }
+        .hero-bg-slideshow {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            filter: brightness(0.6) contrast(1.1); /* Tone down the images */
+        }
+        .hero-bg-slideshow .slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: kenBurnsFade 18s infinite;
+            z-index: 0;
+        }
+        .hero-bg-slideshow .slide:nth-child(1) {
+            background-image: url('{{ url_for('static', filename='features_bg.png') }}');
+            animation-delay: 0s;
+        }
+        .hero-bg-slideshow .slide:nth-child(2) {
+            background-image: url('{{ url_for('static', filename='features_bg_2.png') }}');
+            animation-delay: 6s;
+        }
+        .hero-bg-slideshow .slide:nth-child(3) {
+            background-image: url('{{ url_for('static', filename='features_bg_3.png') }}');
+            animation-delay: 12s;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to right, rgba(2, 44, 34, 0.9) 0%, rgba(2, 44, 34, 0.4) 100%);
+            z-index: 1;
+        }
+        
+        @keyframes kenBurnsFade {
+            0% { opacity: 0; transform: scale(1.05); }
+            10% { opacity: 1; }
+            33% { opacity: 1; }
+            43% { opacity: 0; transform: scale(1.15); }
+            100% { opacity: 0; }
+        }
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        .eyebrow {
+            color: #34d399; /* Bright mint green */
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .hero-desc {
+            color: #d1d5db; /* Light grey */
+            font-size: 1.1rem;
+            line-height: 1.7;
+            font-weight: 400;
+            max-width: 90%;
+        }
+        .hero-text-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            padding: 2.5rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* Grid Cards */
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            height: 100%;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02), 0 2px 4px -1px rgba(0,0,0,0.02);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-card.border-left-green {
+            border-left: 4px solid var(--primary);
+        }
+        .feature-icon {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .feature-text {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* Guide Section */
+        .guide-section {
+            padding: 5rem 0;
+        }
+        .guide-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .guide-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 600px;
+        }
+        .green-line {
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary);
+            display: inline-block;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            height: 100%;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .step-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -20px rgba(4, 120, 87, 0.15);
+            border-color: var(--primary);
+        }
+        .step-number-bg {
+            position: absolute;
+            top: -15px;
+            right: -5px;
+            font-size: 8.5rem;
+            font-weight: 800;
+            color: rgba(4, 120, 87, 0.06);
+            z-index: -1;
+            line-height: 1;
+            font-family: 'Space Grotesk', sans-serif;
+            user-select: none;
+        }
+        .step-icon-box {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary) 0%, #10b981 100%);
+            color: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px -6px rgba(4, 120, 87, 0.4);
+        }
+        .step-title {
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        .step-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Banner */
+        .cta-section {
+            padding: 4rem 0 6rem;
+        }
+        .cta-banner {
+            background-image: url("{{ url_for('static', filename='images/cta_team_banner.png') }}");
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            padding: 5rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.2) 100%);
+            z-index: 1;
+        }
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 500px;
+        }
+        .cta-title {
+            color: white;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .btn-cta {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        .btn-cta:hover {
+            background-color: #065f46;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+        .footer-logo {
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('trang_chu') }}">Giáo Trình AI</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav gap-3">
+                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'trang_chu' %}active{% endif %}" href="{{ url_for('trang_chu') }}">Giới Thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('trang_chu') }}#guide-section">Hướng Dẫn</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'san_pham' %}active{% endif %}" href="{{ url_for('san_pham') }}">Sản Phẩm</a></li>
+                </ul>
+            </div>
+            <div class="d-none d-lg-block">
+                {% if current_user.is_authenticated %}
+                    <div class="d-flex align-items-center">
+                        <a href="{{ url_for('profile') }}" class="btn d-flex align-items-center me-3" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); padding: 6px 16px; text-decoration: none; transition: all 0.3s;">
+                            <i class="fa-solid fa-circle-user fs-4 text-success me-2"></i>
+                            <div class="text-start">
+                                <div style="font-size: 0.65rem; color: rgba(255,255,255,0.6); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    {{ current_user.ho_ten or current_user.ten_dang_nhap }}
+                                </div>
+                                <div style="font-size: 0.9rem; color: white; font-weight: 700; line-height: 1;">
+                                    Tài khoản: 
+                                    {% if current_user.la_admin %}
+                                        ∞
+                                    {% else %}
+                                        {{ current_user.token }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{{ url_for('logout') }}" class="btn-signin" style="background-color: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.1);">Đăng xuất</a>
+                    </div>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn-signin">Đăng nhập</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg-slideshow">
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <div class="hero-text-box">
+                        <div class="eyebrow">THE CLINICAL GALLERY</div>
+                        <h1 class="hero-title">Tại sao nên chọn Giáo Trình AI?</h1>
+                        <p class="hero-desc">
+                            Chúng tôi kết hợp trí tuệ nhân tạo tiên tiến với phương pháp sư phạm hiện đại để tạo ra một môi trường học tập cá nhân hóa, tối ưu hóa mọi tiềm năng của học viên.
+                        </p>
+                        <div class="mt-4">
+                            {% if current_user.is_authenticated %}
+                                <a href="{{ url_for('trang_tao_giao_trinh') }}" class="btn-signin" style="padding: 12px 32px; font-size: 1.1rem; border-radius: 8px;">Tạo giáo trình ngay</a>
+                            {% else %}
+                                <a href="{{ url_for('trang_tao_giao_trinh') }}" class="btn-signin" style="padding: 12px 32px; font-size: 1.1rem; border-radius: 8px;">Tạo giáo trình ngay</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="feature-card border-left-green">
+                                <div class="feature-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                                <h3 class="feature-title">Biên soạn thần tốc</h3>
+                                <p class="feature-text">Thay vì tốn hàng tuần nghiên cứu, AI giúp bạn hoàn thiện một bộ giáo trình đầy đủ chỉ trong vài phút với độ chi tiết cực cao.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-card border-left-green">
+                                <div class="feature-icon"><i class="fa-solid fa-microscope"></i></div>
+                                <h3 class="feature-title">Nghiên cứu đa tầng</h3>
+                                <p class="feature-text">Công nghệ EKRE giúp tìm kiếm kiến thức đa nguồn, đảm bảo nội dung giáo trình có cơ sở khoa học và tính cập nhật mới nhất.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-card border-left-green">
+                                <div class="feature-icon"><i class="fa-solid fa-sliders"></i></div>
+                                <h3 class="feature-title">Chế độ linh hoạt</h3>
+                                <p class="feature-text">Tự do lựa chọn giữa chế độ Auto, Expert hoặc Creative để phù hợp với mọi nhu cầu sư phạm và phong cách giảng dạy.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-card border-left-green">
+                                <div class="feature-icon"><i class="fa-solid fa-file-export"></i></div>
+                                <h3 class="feature-title">Xuất bản chuyên nghiệp</h3>
+                                <p class="feature-text">Tự động chuyển đổi nội dung sang định dạng tài liệu chuẩn (Docx/PDF), sẵn sàng cho việc in ấn và giảng dạy ngay lập tức.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guide Section -->
+    <section id="guide-section" class="guide-section">
+        <div class="container">
+            <div class="row align-items-end mb-5">
+                <div class="col-lg-8">
+                    <h2 class="guide-title">Hướng dẫn sử dụng</h2>
+                    <p class="guide-desc mb-0">Bắt đầu hành trình nâng tầm giáo dục của bạn chỉ với 4 bước đơn giản, được thiết kế tối ưu cho mọi thiết bị.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end d-none d-lg-block">
+                    <div class="green-line"></div>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-card">
+                        <div class="step-number-bg">01</div>
+                        <div class="step-icon-box"><i class="fa-solid fa-user-plus"></i></div>
+                        <h4 class="step-title">Đăng nhập & Nạp Token</h4>
+                        <p class="step-text">Truy cập hệ thống và kiểm tra số dư Token để sẵn sàng cho hành trình biên soạn giáo trình thông minh.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-card">
+                        <div class="step-number-bg">02</div>
+                        <div class="step-icon-box"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <h4 class="step-title">Nhập chủ đề & Chọn chế độ</h4>
+                        <p class="step-text">Nhập từ khóa môn học và lựa chọn chế độ biên soạn (Auto, Expert, Creative) phù hợp với mục tiêu của bạn.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-card">
+                        <div class="step-number-bg">03</div>
+                        <div class="step-icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <h4 class="step-title">Biên soạn & Giám sát</h4>
+                        <p class="step-text">AI thực hiện nghiên cứu đa nguồn và viết nội dung chi tiết từng chương dưới sự giám sát trực tiếp của bạn.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-card">
+                        <div class="step-number-bg">04</div>
+                        <div class="step-icon-box"><i class="fa-solid fa-file-export"></i></div>
+                        <h4 class="step-title">Xuất bản & Lưu trữ</h4>
+                        <p class="step-text">Xuất kết quả ra định dạng Docx/PDF chuyên nghiệp và lưu trữ vĩnh viễn trong thư viện cá nhân để giảng dạy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-banner">
+                <div class="cta-content">
+                    <h2 class="cta-title">Sẵn sàng nâng tầm tri thức của bạn?</h2>
+                    <a href="{{ url_for('trang_tao_giao_trinh') }}" class="btn-cta">Bắt đầu ngay hôm nay</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">GIÁO TRÌNH AI</div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Faculty Portal</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-copy">
+                &copy; 2026 GIÁO TRÌNH AI. THE INTELLECTUAL LIGHT.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

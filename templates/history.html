@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch sử - Giáo Trình AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Active Job Banner */
+        .active-job-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1050;
+            background: var(--bg-card);
+            border-top: 2px solid var(--primary);
+            box-shadow: 0 -4px 24px rgba(0,0,0,0.15);
+            padding: 14px 0;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .active-job-banner.show {
+            transform: translateY(0);
+        }
+        .active-job-banner .progress {
+            height: 6px;
+            border-radius: 3px;
+            background: var(--bg-surface-1);
+        }
+        .active-job-banner .progress-bar {
+            background: var(--primary);
+            transition: width 0.5s ease;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .pulse-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            animation: pulse-dot 1.5s infinite ease-in-out;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('trang_chu') }}">
+                <i class="fa-solid fa-book-open me-2"></i>
+                <span>Giáo Trình AI</span>
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <a href="{{ url_for('profile') }}" class="btn d-flex align-items-center" style="background: var(--bg-surface-1); border-radius: 10px; border: 1px solid var(--glass-border); padding: 5px 12px; text-decoration: none;">
+                    <i class="fa-solid fa-circle-user fs-5 text-primary me-2"></i>
+                    <div class="text-start">
+                        <div style="font-size: 0.6rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Token</div>
+                        <div style="font-size: 0.9rem; color: var(--text-primary); font-weight: 700; line-height: 1;">{{ current_user.token }}</div>
+                    </div>
+                </a>
+                <a href="{{ url_for('trang_tao_giao_trinh') }}" class="btn btn-primary btn-sm" id="btn-tao-moi">
+                    <i class="fa-solid fa-plus me-1"></i>Tạo mới
+                </a>
+                <a href="{{ url_for('logout') }}" class="btn btn-light btn-sm">Đăng xuất</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 960px; padding-top: 2rem;">
+        <div class="d-flex justify-content-between align-items-center mb-4 animate-fade-in-up">
+            <div>
+                <div class="section-label">Tài liệu đã tạo</div>
+                <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700;">
+                    <i class="fa-solid fa-folder-open me-2" style="color: var(--primary);"></i>Lịch sử giáo trình
+                </h2>
+            </div>
+            <span class="badge bg-primary" style="font-size:0.78rem;">{{ history|length }} mục</span>
+        </div>
+
+        <div class="row g-3">
+            {% if history %}
+            {% for item in history %}
+            <div class="col-md-6">
+                {% set delay_attr = 'style="animation-delay: ' ~ (loop.index0 * 0.04) ~ 's;"' %}
+                <div class="glass-card animate-fade-in-up" {{ delay_attr|safe }}>
+                    <div class="card-body p-4 d-flex flex-column" style="min-height: 180px;">
+                        <h5 class="fw-bold mb-2" style="color: var(--primary); font-size:1rem; line-height:1.3;">{{
+                            item.chu_de }}</h5>
+                        <div class="flex-grow-1" style="font-size:0.78rem; color: var(--text-dim);">
+                            <div class="mb-1"><i class="fa-regular fa-calendar me-1"></i> {{
+                                item.ngay_tao.strftime('%d/%m/%Y %H:%M') }}</div>
+                            <div><i class="fa-regular fa-file-lines me-1"></i> {% if item.do_dai_ky_tu > 0 %}{{ '{:,}'.format(item.do_dai_ky_tu) }} ký tự{% else %}—{% endif %}</div>
+                        </div>
+                        <div class="mt-3 pt-3 d-flex gap-2 flex-wrap"
+                            style="border-top: 1px solid var(--glass-border);">
+                            <a href="{{ url_for('hien_thi_lich_su', id=item.id) }}"
+                                class="btn btn-outline-primary btn-sm flex-grow-1">
+                                <i class="fa-solid fa-eye me-1"></i>Xem
+                            </a>
+                            {% if item.ma_cv %}
+                            <a href="{{ url_for('tai_file', loai='pdf', ma=item.ma_cv) }}"
+                                class="btn btn-danger btn-sm"><i class="fa-solid fa-file-pdf me-1"></i>PDF</a>
+                            <a href="{{ url_for('tai_file', loai='docx', ma=item.ma_cv) }}"
+                                class="btn btn-primary btn-sm"><i class="fa-solid fa-file-word me-1"></i>Word</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-12">
+                <div class="glass-card text-center py-5 px-4 animate-fade-in-up">
+                    <div style="font-size:3rem; margin-bottom:1rem; color: var(--text-dim);">
+                        <i class="fa-solid fa-inbox"></i>
+                    </div>
+                    <h4 style="color: var(--text-secondary); font-family: 'Space Grotesk', sans-serif;">Chưa có giáo
+                        trình nào!</h4>
+                    <p class="text-muted mb-4">Bạn chưa tạo giáo trình nào. Hãy bắt đầu ngay.</p>
+                    <a href="{{ url_for('trang_tao_giao_trinh') }}" class="btn btn-primary">
+                        <i class="fa-solid fa-bolt me-2"></i>Tạo giáo trình mới
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Active Job Banner (hiện khi có giáo trình đang tạo) -->
+    <div class="active-job-banner" id="active-job-banner">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <div class="d-flex align-items-center">
+                    <span class="pulse-dot"></span>
+                    <div>
+                        <div class="fw-bold" style="font-size: 0.88rem; color: var(--text-primary);">
+                            Đang tạo giáo trình...
+                        </div>
+                        <div id="banner-status" style="font-size: 0.78rem; color: var(--text-muted);">
+                            Đang xử lý
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ url_for('trang_tao_giao_trinh') }}" class="btn btn-primary btn-sm">
+                    <i class="fa-solid fa-arrow-left me-1"></i>Xem tiến trình
+                </a>
+            </div>
+            <div class="progress">
+                <div id="banner-progress" class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer" style="margin-bottom: 60px;">
+        <div class="d-flex justify-content-center gap-4 mb-3">
+            <a href="#">Chính sách</a>
+            <a href="#">Điều khoản</a>
+            <a href="#">Hỗ trợ</a>
+        </div>
+        <p>&copy; 2026 GIÁO TRÌNH AI — Hệ thống biên soạn giáo trình tự động</p>
+    </footer>
+
+    <script>
+        // ── Active Job Detection ──
+        const STORAGE_KEY = 'active_job_ma_cv';
+        const STORAGE_TITLE_KEY = 'active_job_title';
+
+        (async function checkActiveJob() {
+            const savedMaCv = localStorage.getItem(STORAGE_KEY);
+            if (!savedMaCv) return;
+
+            try {
+                const r = await fetch(`/trang_thai/${savedMaCv}`);
+                const jobData = await r.json();
+
+                if (jobData.trang_thai === 'dang_chay') {
+                    // Hiện banner + cập nhật nút navbar
+                    const banner = document.getElementById('active-job-banner');
+                    const bannerStatus = document.getElementById('banner-status');
+                    const bannerProgress = document.getElementById('banner-progress');
+                    const btnTaoMoi = document.getElementById('btn-tao-moi');
+
+                    banner.classList.add('show');
+
+                    // Cập nhật nút "Tạo mới" → "Đang tạo..."
+                    const title = localStorage.getItem(STORAGE_TITLE_KEY) || '';
+                    btnTaoMoi.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i>Đang tạo...';
+                    btnTaoMoi.classList.remove('btn-primary');
+                    btnTaoMoi.classList.add('btn-warning');
+
+                    // Cập nhật banner status
+                    if (jobData.buoc) bannerStatus.innerText = jobData.buoc;
+                    if (jobData.tien_do) bannerProgress.style.width = `${jobData.tien_do}%`;
+
+                    // Tiếp tục poll để cập nhật live
+                    const poll = setInterval(async () => {
+                        try {
+                            const r2 = await fetch(`/trang_thai/${savedMaCv}`);
+                            const d = await r2.json();
+
+                            if (d.trang_thai === 'hoan_thanh') {
+                                clearInterval(poll);
+                                localStorage.removeItem(STORAGE_KEY);
+                                localStorage.removeItem(STORAGE_TITLE_KEY);
+                                bannerStatus.innerText = 'Hoàn tất! Đang chuyển hướng...';
+                                bannerProgress.style.width = '100%';
+                                bannerProgress.classList.remove('progress-bar-striped', 'progress-bar-animated');
+                                bannerProgress.classList.add('bg-success');
+                                setTimeout(() => { window.location.href = `/ket_qua/${savedMaCv}`; }, 1200);
+                            } else if (d.trang_thai === 'that_bai' || d.trang_thai === 'khong_tim_thay') {
+                                clearInterval(poll);
+                                localStorage.removeItem(STORAGE_KEY);
+                                localStorage.removeItem(STORAGE_TITLE_KEY);
+                                banner.classList.remove('show');
+                                btnTaoMoi.innerHTML = '<i class="fa-solid fa-plus me-1"></i>Tạo mới';
+                                btnTaoMoi.classList.remove('btn-warning');
+                                btnTaoMoi.classList.add('btn-primary');
+                            } else {
+                                if (d.buoc) bannerStatus.innerText = d.buoc;
+                                if (d.tien_do) bannerProgress.style.width = `${d.tien_do}%`;
+                            }
+                        } catch (e) {
+                            clearInterval(poll);
+                        }
+                    }, 3000);
+
+                } else if (jobData.trang_thai === 'hoan_thanh') {
+                    localStorage.removeItem(STORAGE_KEY);
+                    localStorage.removeItem(STORAGE_TITLE_KEY);
+                    // Có thể redirect luôn hoặc để yên
+                } else {
+                    localStorage.removeItem(STORAGE_KEY);
+                    localStorage.removeItem(STORAGE_TITLE_KEY);
+                }
+            } catch (e) {
+                // Lỗi mạng - bỏ qua
+            }
+        })();
+    </script>
+</body>
+
+</html>

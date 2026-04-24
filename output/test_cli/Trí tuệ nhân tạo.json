@@ -1,0 +1,74 @@
+{
+  "topic": "Trí tuệ nhân tạo",
+  "book_vi": {
+    "title": "Trí tuệ nhân tạo",
+    "chapters": [
+      {
+        "title": "Giới thiệu về Trí tuệ nhân tạo",
+        "sections": [
+          {
+            "title": "Lịch sử của Trí tuệ nhân tạo",
+            "content": "Nội dung đang cập nhật.",
+            "citations": []
+          },
+          {
+            "title": "Triết lý và Đạo đức trong Trí tuệ nhân tạo",
+            "content": "Nội dung đang cập nhật.",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "title": "Cơ sở Học tập trong Trí tuệ nhân tạo",
+        "sections": [
+          {
+            "title": "Phương pháp Học tập có Giám sát",
+            "content": "Nội dung đang cập nhật.",
+            "citations": []
+          },
+          {
+            "title": "Phương pháp Học tập không Giám sát",
+            "content": "Nội dung đang cập nhật.",
+            "citations": []
+          },
+          {
+            "title": "Học sâu và Mô hình ngôn ngữ",
+            "content": "Nội dung đang cập nhật.",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "title": "Nhận thức và Kỹ thuật trong Trí tuệ nhân tạo",
+        "sections": [
+          {
+            "title": "Công nghệ Nhận thức",
+            "content": "Nội dung đang cập nhật.",
+            "citations": []
+          },
+          {
+            "title": "Kỹ thuật Mô hình hóa và Dự đoán",
+            "content": "Nội dung đang cập nhật.",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "title": "Ứng dụng và Nguy cơ của Trí tuệ nhân tạo",
+        "sections": [
+          {
+            "title": "Ứng dụng Trí tuệ nhân tạo trong Y tế và Chẩn đoán",
+            "content": "Nội dung đang cập nhật.",
+            "citations": []
+          },
+          {
+            "title": "Nguy cơ và Thách thức trong Phát triển Trí tuệ nhân tạo",
+            "content": "Nội dung đang cập nhật.",
+            "citations": []
+          }
+        ]
+      }
+    ]
+  },
+  "references": []
+}
